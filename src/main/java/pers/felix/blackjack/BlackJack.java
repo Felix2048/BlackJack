@@ -1,9 +1,12 @@
 package pers.felix.blackjack;
 
+import pers.felix.blackjack.core.Game;
 import pers.felix.blackjack.entity.Card;
 import pers.felix.blackjack.entity.Hand;
 import pers.felix.blackjack.enums.FaceValue;
 import pers.felix.blackjack.enums.Suit;
+
+import java.util.Scanner;
 
 /**
  * @Title: BlackJack
@@ -13,16 +16,24 @@ import pers.felix.blackjack.enums.Suit;
  **/
 
 public class BlackJack {
+
+    public static boolean running = true;
+
     public static void main(String[] args) {
-        Hand hand = new Hand();
         System.out.println("This is a Black Jack game.");
-        hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
-        hand.addCard(new Card(FaceValue.NINE, Suit.Spade));
         System.out.println();
-        System.out.println(hand.toString());
-        System.out.println();
-        System.out.println(hand.toString(true));
-        System.out.println();
-        System.out.println(hand.toString(false));
+        Game game = new Game();
+        while(running) {
+            game.startNewGame();
+            if(game.isGameOver()) {
+                running = false;
+            }
+            else {
+                System.out.println("Do you want to continue (Y/N)? ");
+                Scanner input = new Scanner(System.in);
+                String str = input.next();
+                running = str.toUpperCase().charAt(0) == 'N';
+            }
+        }
     }
 }

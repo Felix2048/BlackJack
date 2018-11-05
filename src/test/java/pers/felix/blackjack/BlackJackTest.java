@@ -31,17 +31,18 @@ public class BlackJackTest {
 
     @Test
     public void getFaceValuesTest() {
-        hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
-        hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
-        Assert.assertEquals(2, hand.getFaceValues().get(0).intValue());
-        Assert.assertEquals(12, hand.getFaceValues().get(1).intValue());
-        Assert.assertEquals(22, hand.getFaceValues().get(2).intValue());
+//        hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
+//        hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
+//        Assert.assertEquals(2, hand.getFaceValues().get(0).intValue());
+//        Assert.assertEquals(12, hand.getFaceValues().get(1).intValue());
+//        Assert.assertEquals(22, hand.getFaceValues().get(2).intValue());
 
-//        Card card1 = deck.extractCard();
-//        Card card2 = deck.extractCard();
-//        hand.addCard(card1);
-//        hand.addCard(card2);
-//        Assert.assertEquals(card1.getFaceValue().getValues().get(0) + card2.getFaceValue().getValues().get(0), hand.getFaceValues().get(0).intValue());
+        Card card1 = new Card(FaceValue.ACE, Suit.Spade);
+        Card card2 = new Card(FaceValue.TWO, Suit.Spade);
+        hand.addCard(card1);
+        hand.addCard(card2);
+        card2.setFaceValue(FaceValue.TEN);
+        Assert.assertEquals(card1.getFaceValue().getValues().get(0) + card2.getFaceValue().getValues().get(0), hand.getFaceValues().get(0).intValue());
     }
 
     @Test

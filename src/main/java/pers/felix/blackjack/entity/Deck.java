@@ -49,11 +49,9 @@ public class Deck {
         faceValues.add(FaceValue.JACK);
         faceValues.add(FaceValue.QUEEN);
         faceValues.add(FaceValue.KING);
-        for (int i = 0; i < pokerCountWithoutJokers; i++) {
-            for(Suit suit: suits) {
-                for (FaceValue faceValue: faceValues) {
-                    cards.add(new Card(faceValue, suit));
-                }
+        for(Suit suit: suits) {
+            for (FaceValue faceValue: faceValues) {
+                cards.add(new Card(faceValue, suit));
             }
         }
     }

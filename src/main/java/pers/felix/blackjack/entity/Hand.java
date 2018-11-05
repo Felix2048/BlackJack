@@ -14,6 +14,7 @@ import java.util.Iterator;
  **/
 
 public class Hand {
+
     private ArrayList<Card> cards = new ArrayList<>();
 
     public int getSize() {
@@ -61,6 +62,23 @@ public class Hand {
         return faceValues;
     }
 
+    /**
+     * Get the face value which is the closest to 21
+     * @return
+     */
+    public int getMaxFaceValue() {
+        int max = -1;
+        ArrayList<Integer> faceValues = getFaceValues();
+        for (Integer value: faceValues) {
+            if (value > 21) {
+                break;
+            }
+            max = max > value ? max : value;
+        }
+        return max;
+    }
+
+
     public boolean isBlackJack() {
         return cards.size() == 2 && getFaceValues().contains(21);
     }
@@ -73,28 +91,22 @@ public class Hand {
         return cards.size() == 2 && cards.get(0).getFaceValue() == cards.get(1).getFaceValue();
     }
 
-    /**
-     * 去除重复元素
-     * @param list
-     * @return newList
-     */
-    private ArrayList<Integer> getSingle(ArrayList<Integer> list) {
-        ArrayList<Integer> newList = new ArrayList<>();
-        Iterator<Integer> it = list.iterator();
-        while (it.hasNext()) {
-            Integer obj = it.next();
-            if (!newList.contains(obj)) {
-                newList.add(obj);
-            }
+    public void clear() {
+        cards.clear();
+    }
+
+    public Hand splitHand() {
+        Hand newHand = new Hand();
+        if (getSize() == 2) {
+            newHand.addCard(cards.get(1));
+            cards.remove(1);
         }
-        return newList;
+        return newHand;
     }
 
     @Override
     public String toString() {
-        return "Hand{" +
-                "cards=" + cards +
-                '}';
+        return toString(false);
     }
 
     public String toString(boolean isFirstCardHidden) {
@@ -132,4 +144,22 @@ public class Hand {
         }
         return str.toString();
     }
+
+    /**
+     * 去除重复元素
+     * @param list
+     * @return newList
+     */
+    private ArrayList<Integer> getSingle(ArrayList<Integer> list) {
+        ArrayList<Integer> newList = new ArrayList<>();
+        Iterator<Integer> it = list.iterator();
+        while (it.hasNext()) {
+            Integer obj = it.next();
+            if (!newList.contains(obj)) {
+                newList.add(obj);
+            }
+        }
+        return newList;
+    }
+
 }
