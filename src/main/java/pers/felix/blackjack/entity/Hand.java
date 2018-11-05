@@ -139,8 +139,8 @@ public class Hand {
                         str.append(faceValues.get(i));
                     }
                 }
-                str.append("\n");
             }
+            str.append("\n");
         }
         return str.toString();
     }

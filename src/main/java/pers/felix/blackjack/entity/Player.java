@@ -31,7 +31,8 @@ public class Player extends PlayerBase {
      * @return bet
      */
     public int wager() {
-1        hand.clear();
+        hand.clear();
+        end = false;
         System.out.println("Your current balance is: $" + getBalance());
         System.out.println("Please input your bet (more than $10): ");
         Scanner input = new Scanner(System.in);
@@ -57,6 +58,7 @@ public class Player extends PlayerBase {
         this.deck = deck;
         while (!end) {
             showHand();
+            System.out.println("Please input (H) for hit or (S) for stand:");
             switch (getCommand()) {
                 case 'H':
                     hit();

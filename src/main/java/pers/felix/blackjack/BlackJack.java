@@ -31,9 +31,12 @@ public class BlackJack {
             else {
                 System.out.println("Do you want to continue (Y/N)? ");
                 Scanner input = new Scanner(System.in);
-                String str = input.next();
+                String str = input.nextLine();
                 running = str.toUpperCase().charAt(0) == 'N';
             }
         }
+        Scanner input = new Scanner(System.in);
+        input.close();
     }
+
 }

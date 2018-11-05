@@ -38,7 +38,7 @@ public class PlayerBase {
 
     protected char getCommand() {
         Scanner input = new Scanner(System.in);
-        String str = input.next();
+        String str = input.nextLine();
         return str.toUpperCase().charAt(0);
     }
 }
