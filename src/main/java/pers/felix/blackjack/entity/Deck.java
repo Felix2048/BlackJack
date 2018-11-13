@@ -44,6 +44,7 @@ public class Deck {
         faceValues.add(FaceValue.FIVE);
         faceValues.add(FaceValue.SIX);
         faceValues.add(FaceValue.SEVEN);
+        faceValues.add(FaceValue.EIGHT);
         faceValues.add(FaceValue.NINE);
         faceValues.add(FaceValue.TEN);
         faceValues.add(FaceValue.JACK);
@@ -54,10 +55,21 @@ public class Deck {
                 cards.add(new Card(faceValue, suit));
             }
         }
+        shuffle();
     }
 
     public int getSize() {
         return cards.size();
+    }
+
+    public void shuffle() {
+        ArrayList<Card> temp = new ArrayList<>();
+        while(!cards.isEmpty()) {
+            int randomIndex = new Random().nextInt(getSize());
+             temp.add(cards.get(randomIndex));
+            cards.remove(randomIndex);
+        }
+        cards = temp;
     }
 
     /**
@@ -65,9 +77,11 @@ public class Deck {
      * @return Card
      */
     public Card extractCard() {
-        int randomIndex = new Random().nextInt(getSize());
-        Card card = cards.get(randomIndex);
-        cards.remove(randomIndex);
+        if (getSize() == 0) {
+            init();
+        }
+        Card card = cards.get(0);
+        cards.remove(0);
         return card;
     }
 

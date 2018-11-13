@@ -48,9 +48,9 @@ public class BlackJackTest {
     @Test
     public void isBlackJackTest() {
         hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
-        hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
-        hand.addCard(new Card(FaceValue.NINE, Suit.Spade));
-        Assert.assertTrue(!hand.isBlackJack());
+        hand.addCard(new Card(FaceValue.TEN, Suit.Spade));
+//        hand.addCard(new Card(FaceValue.NINE, Suit.Spade));
+        Assert.assertTrue(hand.isBlackJack());
     }
 
     @Test
@@ -58,6 +58,16 @@ public class BlackJackTest {
         hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
         hand.addCard(new Card(FaceValue.ACE, Suit.Spade));
         Assert.assertTrue(hand.isPair());
+    }
+
+    @Test
+    public void extractCardTest() {
+        for (int i = 0; i < 52; i++) {
+            Card card = deck.extractCard();
+            Assert.assertEquals(52 - i - 1, deck.getSize());
+        }
+        deck.extractCard();
+        Assert.assertEquals(51, deck.getSize());
     }
 
 }
